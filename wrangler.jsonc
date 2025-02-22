@@ -1,0 +1,22 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "docker-registry",
+  "main": "./index.ts",
+  "compatibility_date": "2024-09-09",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "preview_urls": false,
+  "route": { "pattern": "docker.demosjarco.dev", "custom_domain": true },
+  "minify": true,
+  "upload_source_maps": true,
+  "observability": { "enabled": true },
+  "env": {
+    "production": {
+      "vars": {
+        "JWT_REGISTRY_TOKENS_PUBLIC_KEY": "",
+      },
+      "r2_buckets": [{ "binding": "REGISTRY", "bucket_name": "docker" }],
+    },
+    "dev": {},
+  },
+}
